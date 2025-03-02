@@ -3,21 +3,23 @@ name: A basic workflow
 on: push
 
 jobs:
-  job1:
-    name: first job
+  build:
+    name: Build Job
     runs-on: ubuntu-latest
     steps:
-      - name: Step one
+      - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Step two
+      - name: List Files
         run: ls -la
-      - run: pwd
-    
-  job2: 
-    name: second job
-    runs-on: windows-latest
+      - name: Print Working Directory
+        run: pwd
+      - name: Print Date
+        run: date
+
+  dependent_job:
+    name: Dependent Job
+    runs-on: ubuntu-latest
+    needs: build
     steps:
-    - name: Step one of job2
-      uses: actions/checkout@v4
-    - name: Step two of job2
-      run: pwd
+      - name: Confirm Dependency Execution
+        run: echo "Build job completed, now running dependent job."
