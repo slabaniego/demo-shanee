@@ -22,4 +22,4 @@ jobs:
     needs: build
     steps:
       - name: Confirm Dependency Execution
-        run: echo "Build job completed, now running dependent job."
+        run: echo "Build job completed for demo lab 3, now running dependent job."
